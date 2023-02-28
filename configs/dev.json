@@ -1,0 +1,36 @@
+{
+    "name": "TypeScript Extension - DEV",
+    "id" : "typescript-extension-dev",
+    "baseUri": "https://localhost:3000",
+    "contributions": [
+        {
+          "id": "typescript-hub-group",
+          "type": "ms.vss-web.hub-group",
+          "description": "Hub group for typescript app",
+          "targets": [
+            "ms.vss-web.project-hub-groups-collection"
+          ],
+          "properties": {
+            "name": "TypeScript Extension Hub Group",
+            "iconAsset": "TerenceBuldaChia.typescript-extension-dev/images/extension-icon.png",
+            "includesData": {
+                "assets": [
+                    "TerenceBuldaChia.typescript-extension-dev/images/extension-icon.png"
+                ]
+            }
+          }
+        },
+        {
+          "id": "typescript-hub",
+          "type": "ms.vss-web.hub",
+          "targets": [
+            ".typescript-hub-group"
+          ],
+          "properties": {
+            "name": "TypeScript Extension Hub",
+            "icon" : "images/extension-icon.png",
+            "uri": "dist/index.html"
+          }
+        }
+      ]
+}

@@ -1,0 +1,28 @@
+{
+    "name": "TypeScript Extension",
+    "id" : "typescript-extension",
+    "contributions": [
+        {
+          "id": "typescript-hub-group",
+          "type": "ms.vss-web.hub-group",
+          "description": "Hub group for typescript app",
+          "targets": [
+            "ms.vss-web.project-hub-groups-collection"
+          ],
+          "properties": {
+            "name": "TypeScript Extension Hub Group"
+          }
+        },
+        {
+          "id": "typescript-hub",
+          "type": "ms.vss-web.hub",
+          "targets": [
+            ".typescript-hub-group"
+          ],
+          "properties": {
+            "name": "TypeScript Extension Hub",
+            "uri": "build/index.html"
+          }
+        }
+      ]
+}

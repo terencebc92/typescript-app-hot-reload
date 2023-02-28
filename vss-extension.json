@@ -1,0 +1,34 @@
+{
+  "manifestVersion": 1,
+  "id": "typescript-extension",
+  "publisher": "TerenceBuldaChia",
+  "version": "1.0.47",
+  "name": "TypeScript Extension",
+  "description": "A sample TypeScript extension",
+  "public": false,
+  "categories": [
+    "Azure Repos"
+  ],
+  "icons": {
+    "default": "images/extension-icon.png"
+  },
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "files": [
+    {
+      "path": "dist",
+      "addressable": true
+    },
+    {
+      "path": "build",
+      "addressable": true
+    },
+    {
+      "path": "images",
+      "addressable": true
+    }
+  ]
+}
