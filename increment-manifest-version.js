@@ -1,35 +1,26 @@
 let fs = require("fs");
-let envPath = ".env";
 console.log("Incrementing build number...");
-fs.readFile("output.json", (err, content) => {
-  if (err) throw err;
-  let metadata = JSON.parse(content);
-  let version = metadata.versions;
-  let versionNumbers = version.split(".").map(Number);
-  versionNumbers[2]++;
-  metadata.version = versionNumbers.join(".");
 
-  fs.writeFile(
-    "vss-extension.json",
-    JSON.stringify(metadata, null, 2),
-    (err) => {
-      if (err) throw err;
-      console.log(`Current version number: ${metadata.version}`);
-    }
-  );
+const incrementPatchVersion = (version) => {
+  const [major, minor, patch] = version.split(".");
+  return `${major}.${minor}.${Number(patch) + 1}`;
+};
 
-  var dataArray = fs.readFileSync(envPath, "utf8").split("\n");
+const path = "./version.json";
 
-  var replacedArray = dataArray.map((line) => {
-    if (line.split("=")[0] == attrName) {
-      return attrName + "=" + String(newVal);
-    } else {
-      return line;
-    }
-  });
-
-  fs.writeFileSync(envPath, "");
-  for (let i = 0; i < replacedArray.length; i++) {
-    fs.appendFileSync(envPath, replacedArray[i] + "\n");
+fs.readFile(path, (error, data) => {
+  if (error) {
+    console.log(error);
+    return;
   }
+  const parsedData = JSON.parse(data);
+  parsedData.version = incrementPatchVersion(parsedData.version);
+
+  fs.writeFile(path, JSON.stringify(parsedData, null, 2), (err) => {
+    if (err) {
+      console.log(`Failed to write to ${path}`);
+      return;
+    }
+    console.log(`Version updated successfully`);
+  });
 });
